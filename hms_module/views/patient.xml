@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <record id="patient_form_view" model="ir.ui.view">
+        <field name="name">Patient Data</field>
+        <field name="model">hms.patient</field>
+        <field name="arch" type="xml">
+         <form>
+        <header>
+              <button name="set_to_good" type="object" string="Good" attrs="{'invisible':[('state','=','good')]}"   />
+              <button name="set_to_fair" type="object" string="Fair" attrs="{'invisible':[('state','=','fair')]}"   />
+              <button name="set_to_undetermined" type="object" string="Undetermined" attrs="{'invisible':[('state','=','undetermined')]}"   />
+              <button name="set_to_serious" type="object" string="Serious" attrs="{'invisible':[('state','in',('serious','good'))]}"   />
+              <button name="%(school_managment.track_wizard_action)d" type="action" string="Create Track"    />
+
+              <field name="state" widget="statusbar" statusbar_visible="good,fair,undetermined" />
+           </header>
+           <sheet>
+             <group string="Patient Data">
+               <group>
+                   <field name="f_name" string="Frist Name" attrs="{'required': True}" />
+               </group>
+               <group>
+                 <field name="l_name" string="Last Name" attrs="{'required': True}" />
+               </group>
+               <group>
+                 <field name="b_date" string="BirthDate" />
+               </group>
+               <group>
+                 <field name="cr_ratio" string="CR Rstio" attrs="{'required':[('pcr','=',True)]}" />
+               </group>
+               <group>
+                 <field name="blood_typr" string="Blood Type" />
+               </group>
+               <group>
+                 <field name="pcr" string="PCR"  />
+               </group>
+               <group>
+                 <field name="image" string="Image" />
+               </group>
+               <group>
+                 <field name="address"  string="Address" />
+               </group>
+               <group>
+                 <field name="age" string="Age" />
+                  <field name="email" string="Email" />
+               </group>
+               <group>
+                 <field name="dept_id" string="Depatrment" domain="[('is_opened','=',True)]" />
+                 <field name="capacity" string="Capacity" attrs="{'invisible':[('dept_id','=',False)]}"  />
+                 <field name="doc_ids" string="Doctors" widget="many2many_tags" attrs="{'readonly':[('dept_id','=',False)]}" 
+                         groups="hms_module.hms_manager"/>
+               </group>
+               <group>
+                 <field name="history" string="History" attrs="{'invisible': [('age', '&lt;', 50)]}" />
+
+               </group>
+               
+             </group>
+            
+           </sheet>
+         </form>
+        </field>
+
+      </record>
+
+
+
+    <record id="patient_action" model="ir.actions.act_window">
+        <field name="name">Patient</field>
+        <field name="res_model">hms.patient</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    </data>
+</odoo>

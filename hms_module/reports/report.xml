@@ -1,0 +1,44 @@
+<odoo>
+  <data>
+    <record id="patient_reports" model="ir.actions.report"> 
+      <field name="name">Print</field>
+      <field name="model">hms.patient</field>
+      <field name="report_type">qweb-pdf</field>
+      <field name="report_name">hms_module.patient_field_document</field>
+      <field name="report_file">hms_module.patient_field_document</field>
+      <field name="binding_model_id" ref="model_hms_patient" />
+      <field name="binding_type">report</field>
+    </record>
+
+    <template id="patient_field_document">
+      <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+              <t t-cell="web.external.layout">
+                <div class="page">
+                   
+                     <div>
+                        <h1 style="color:red">Patient Status Report</h1>
+                        <h3>Name:<t t-esc="doc.f_name"/></h3>
+                        <h3>Age:<t t-esc="doc.age"/></h3>
+                        <h3>Department Name:<t t-esc="doc.name_dept"/></h3>
+                        <h3>Date Of Birth:<t t-esc="doc.b_date"/></h3>
+                        <h3>PCR:<t t-esc="doc.pcr"/></h3>
+                        <h3>Blood Type<t t-esc="doc.blood_typr"/></h3>
+                        <h3>Email:<t t-esc="doc.email"/></h3>
+                        <h1>Doctors</h1>
+                       <ul>
+                          <t t-foreach="doc.doc_ids" t-as="docc">
+                            <li>Dr:<span t-esc="docc.name" /></li>
+                          </t>
+                       </ul>
+                     </div>
+                     <div style="margin-left:100px">
+                        <img t-attf-src="data:image/*;base64,{{doc.image}}"style="width:200px;"/>
+                     </div>
+                </div>
+              </t>
+            </t>
+      </t>
+    </template>
+  </data>
+</odoo>

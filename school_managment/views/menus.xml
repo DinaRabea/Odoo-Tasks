@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+           <menuitem id="model_root" name="Student Managment">
+             <menuitem id="model_mange" name="Manage">
+                <menuitem id="studentaction" name="Student" sequence="10" action="student_action" />
+                <menuitem id="trackaction" name="Track" sequence="20" action="track_action" />
+                <menuitem id="skillaction" name="Skill" action="skill_action" />
+
+              </menuitem>
+           </menuitem>    
+    </data>
+    
+
+</odoo>

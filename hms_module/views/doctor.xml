@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="doctor_form_view" model="ir.ui.view">
+       <field name="name">Doctors</field>
+       <field name="model">hms.doctor</field>
+       <field name="arch" type="xml">
+          <form>
+            <sheet>
+               <group>
+                 <group>
+                   <field name="name" />
+                 </group>
+                 <group>
+                   <field name="b_date" string="BirthDate" />
+                 </group> 
+                 <group>
+                   <field name="age" />
+                 </group> 
+                 <group>
+                   <field name="image" />
+                 </group>
+                 <group>
+                   <field name="address" />
+                 </group>
+                  <group>
+                   <field name="patient_ids"  />
+                 </group>
+               </group>
+               <notebook>
+                <page  string="History">
+                    <field name="history" />
+                </page>
+               </notebook>
+            </sheet>
+          </form>
+       </field>
+
+    </record>
+
+
+    <record id="doctor_action" model="ir.actions.act_window">
+        <field name="name">Doctors</field>
+        <field name="res_model">hms.doctor</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+  </data>
+</odoo>

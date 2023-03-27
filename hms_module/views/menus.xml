@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+           <menuitem id="model_root" name="Hms">
+             <menuitem id="model_mange" name="Manage">
+                <menuitem id="patientaction" name="Patient" action="patient_action" />
+                <menuitem id="departmentaction" name="Department" action="department_action" />
+                <menuitem id="doctoraction" name="Doctors" action="doctor_action" />
+              </menuitem>
+           </menuitem>    
+    </data>
+    
+
+</odoo>

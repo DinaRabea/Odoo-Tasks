@@ -1,0 +1,31 @@
+<odoo>
+  <data>
+
+    <record id="skill_form_view" model="ir.ui.view">
+      <field name="name">Skills</field>
+      <field name="model">skill.field</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+          <p class="alert alert-info">Skills Info.</p>
+          <group>
+                <field name="name"/>
+          </group>
+          <notebook>
+            <page string="Student">
+              <field name="std_ids"/>
+            </page>
+          </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+     <record id="skill_action" model="ir.actions.act_window">
+        <field name="name">Skills</field>
+        <field name="res_model">skill.field</field>
+        <field name="view_mode">tree,form</field>
+      </record>   
+
+  </data>
+</odoo>

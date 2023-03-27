@@ -1,0 +1,37 @@
+<odoo>
+  <data>
+     <record id="hms_category" model="ir.module.category">
+       <field name="name">hms category</field>
+     </record>
+
+     <record id="hms_user" model="res.groups">
+        <field name="name">hms user</field>
+        <field name="category_id" ref="hms_category" />
+     </record>
+
+     <record id="hms_manager" model="res.groups">
+        <field name="name">hms manager</field>
+        <field name="category_id" ref="hms_category" />
+        <field name="implied_ids"  eval="[(4, ref('hms_user'))]" />
+     </record>
+
+
+     <record id="view_your_data" model="ir.rule">
+        <field name="name">Your Only Data</field>
+        <field name="model_id" ref="model_hms_patient" />
+        <field name="groups" eval="[(4, ref('hms_user'))]" />
+        <field name="domain_force">['|',('create_uid','=',user.id),('write_uid','=',user.id)]</field>
+     </record>
+
+
+     <record id="view_all_data" model="ir.rule">
+      <field name="name">All Data</field>
+      <field name="model_id" ref="model_hms_patient" />
+      <field name="groups" eval="[(4, ref('hms_manager'))]" />
+      <field name="domain_force">[(1,'=',1)]</field>
+     </record>
+
+
+  
+  </data>
+</odoo>

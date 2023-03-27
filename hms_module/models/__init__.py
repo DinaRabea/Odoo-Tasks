@@ -1,0 +1,1 @@
+from . import patient_model, department_model, doctor_model

@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+student_access,student_access,model_student_field,security_model,1,0,1,0
+track_access,track_access,model_track_field,security_model,1,0,0,0
+student_access_namager,student_access_manager,model_student_field,security_model_manager,1,1,1,1
+track_access_namager,track_access_namager,model_track_field,security_model_manager,1,1,1,1
+track_wizard_access,track_wizard_access,model_iti_trackwizard,,1,1,1,1

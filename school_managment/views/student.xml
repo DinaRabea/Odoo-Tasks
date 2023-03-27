@@ -1,0 +1,97 @@
+<odoo>
+  <data>
+
+    <record id="student_form_view" model="ir.ui.view">
+      <field name="name">Student</field>
+      <field name="model">student.field</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+              <button name="set_to_interviewing" type="object" string="Interviewing" attrs="{'invisible':[('state','=','Interviewing')]}"   />
+              <button name="set_to_new" type="object" string="New" attrs="{'invisible':[('state','!=','interviewing')]}"   />
+              <button name="set_to_accepted" type="object" string="Accepted" attrs="{'invisible':[('state','=','accepted')]}"   />
+              <button name="set_to_rejcted" type="object" string="Rejected" attrs="{'invisible':[('state','in',('rejcted','accepted'))]}"   />
+              <button name="%(track_wizard_action)d" type="action" string="create new track"  />
+
+              <field name="state" widget="statusbar" statusbar_visible="new,interviewing,accepted" />
+           </header>
+          <sheet>
+          <p class="alert alert-info">Student Info.</p>
+          <group string="Personal Info">
+            <group>
+                <field name="name"/>
+            </group>
+              <group>
+                <field name="email" attrs="{'required':['|',('name','!=',False),('track_id','!=',False)]}"
+                       groups="school_managment.security_model_manager" />
+            </group>
+
+            <group>
+                <field name="age"/>
+            </group>
+              <group>
+                <field name="birthdate"/>
+                <field name="computed_age"/>
+
+            </group>
+            <group>
+                <field name="salary"/>
+            </group>
+              <group>
+                <field name="interview_time"/>
+            </group>
+            <group>
+                <field name="info"/>
+            </group>
+            <group>
+                <field name="is_accepted"/>
+            </group>
+              <group>
+                <field name="image"/>
+            </group>  <group>
+                <field name="gender"/>
+            </group>
+            <group>
+                <field name="track_id" required="True" domain="[('is_opened','=',True)]" />
+                <field name="branch" attrs="{'invisible':[('track_id','=',False)]}" />
+
+            </group>
+          </group>
+          <notebook>
+            <page string="Description">
+              <field name="description"/>
+            </page>
+          </notebook>
+           <form>
+            <sheet>
+             <group>
+              <field name="skills_ids" widget="many2many_tags" />
+             </group>
+            </sheet>
+          </form>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="student_tree_view" model="ir.ui.view">
+      <field name="name">Student Tree</field>
+      <field name="model">student.field</field>
+      <field name="arch" type="xml">
+            <tree string="Student tree data">
+              <field name="name" />
+              <field name="email" />
+              <field name="birthdate" />
+              <field name="computed_age" />
+
+            </tree>
+      </field>
+    </record>
+
+    <record id="student_action" model="ir.actions.act_window">
+        <field name="name">Students</field>
+        <field name="res_model">student.field</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+  </data>
+</odoo>
